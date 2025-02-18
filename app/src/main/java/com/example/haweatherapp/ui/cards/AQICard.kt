@@ -2,10 +2,8 @@ package com.example.haweatherapp.ui.cards
 
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
-import androidx.compose.foundation.layout.heightIn
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.widthIn
-import androidx.compose.foundation.layout.wrapContentSize
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
@@ -14,7 +12,6 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.tooling.preview.Devices
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 
@@ -22,16 +19,13 @@ import androidx.compose.ui.unit.dp
 @Composable
 fun AQICard(
     airQualityIndex: Int = 390,
-    condition: String = "Partly Cloudy",
     pm: Int = 800,
     modifier: Modifier = Modifier
 ) {
     Card(
         modifier = modifier
-            .padding(8.dp)
-            .wrapContentSize()
-            .widthIn(max = 400.dp)
-            .heightIn(max = 380.dp),
+            .fillMaxSize()
+            .padding(8.dp),
         colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.errorContainer),
         shape = RoundedCornerShape(36.dp)
     ) {
@@ -63,7 +57,8 @@ fun AQICard(
 }
 
 
-@Preview(showBackground = true, device = Devices.PIXEL_4)
+//@Preview(showBackground = true, device = Devices.PIXEL_TABLET)
+@Preview
 @Composable
 fun AQICardPreview() {
     AQICard()

@@ -4,23 +4,20 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
-import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Scaffold
-import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.graphics.Color.Companion.Black
 import androidx.compose.ui.tooling.preview.Devices
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import com.example.haweatherapp.ui.cards.AQICard
+import com.example.haweatherapp.ui.cards.ClockCard
+import com.example.haweatherapp.ui.cards.SunCard
 import com.example.haweatherapp.ui.cards.WeatherCard
 import com.example.haweatherapp.ui.theme.HAWeatherAppTheme
 
@@ -43,41 +40,26 @@ class MainActivity : ComponentActivity() {
 
 @Composable
 private fun MainCardHolder(innerPadding: PaddingValues) {
-    Column(
+    Row(
         modifier = Modifier
             .padding(innerPadding)
-            .fillMaxSize(),
-        verticalArrangement = Arrangement.spacedBy(16.dp),
-        horizontalAlignment = Alignment.CenterHorizontally
+            .fillMaxSize()
     ) {
-        Row(
-            modifier = Modifier.weight(1f),
-            horizontalArrangement = Arrangement.spacedBy(16.dp)
-        ) {
-            WeatherCard()
-            AQICard()
-            WeatherCard()
+        Column(modifier = Modifier.weight(1.5f)) {
+            ClockCard(modifier = Modifier
+                .weight(0.6f)
+                .fillMaxWidth()
+            )
+            WeatherCard(modifier = Modifier.weight(2f))
         }
-        Row(
-            modifier = Modifier.weight(1f),
-            horizontalArrangement = Arrangement.spacedBy(16.dp)
-        ) {
-            WeatherCard()
-            WeatherCard()
-            WeatherCard()
-        }
+            Column(modifier = Modifier.weight(1f)) {
+                WeatherCard(modifier = Modifier.weight(2.75f))
+                SunCard(modifier = Modifier.weight(1f))
+            }
     }
 }
 
-@Composable
-fun Greeting(name: String, modifier: Modifier = Modifier) {
-    Text(
-        text = "Hello $name!",
-        modifier = modifier
-    )
-}
-
-@Preview(showBackground = true, device = "spec:width=1280dp,height=800dp,dpi=240", backgroundColor = 0xFF000000)
+@Preview(showBackground = true, device = Devices.PIXEL_TABLET)
 @Composable
 fun WeatherCardPreview() {
     HAWeatherAppTheme {

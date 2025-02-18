@@ -1,13 +1,12 @@
 package com.example.haweatherapp.ui.cards
 
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.widthIn
-import androidx.compose.foundation.layout.wrapContentSize
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
@@ -17,15 +16,17 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Devices
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import com.example.haweatherapp.R
 
 @Composable
 fun WeatherCard(
     temperature: Float = 70f,
-    condition: String = "Partly Cloudy",
+    condition: String = "Sunny",
     pressure: Int = 800,
     visibility: Float = 3f,
     humidity: Int = 87,
@@ -33,10 +34,7 @@ fun WeatherCard(
 ) {
     Card(
         modifier = modifier
-            .padding(8.dp)
-            .wrapContentSize()
-            .widthIn(max = 400.dp)
-            .heightIn(max = 380.dp),
+            .padding(8.dp),
         colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.errorContainer),
         shape = RoundedCornerShape(36.dp)
     ) {
@@ -44,19 +42,18 @@ fun WeatherCard(
             modifier = Modifier
                 .padding(24.dp)  // Increased internal padding
         ) {
-            Text(
-                text = "Weather",
-                style = MaterialTheme.typography.headlineSmall,
-                color = Color.Gray
-            )
 
             Column(
                 modifier = Modifier
                     .weight(1f)
                     .fillMaxWidth(),
                 verticalArrangement = Arrangement.Center,
-                horizontalAlignment = Alignment.Start
+                horizontalAlignment = Alignment.CenterHorizontally,
+
             ) {
+                Image(painter = painterResource(id = R.drawable.sun),
+                    contentDescription = "Sunny day",
+                    modifier = Modifier.size(150.dp)  )
                 Text(
                     text = "${temperature.toInt()}°F",
                     style = MaterialTheme.typography.displayLarge,
@@ -114,7 +111,7 @@ private fun MetricCard(
         Column(
             modifier = Modifier
                 .fillMaxWidth()
-                .padding(8.dp),
+                .padding(10.dp),
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
             Text(
