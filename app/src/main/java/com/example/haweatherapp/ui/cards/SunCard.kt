@@ -23,9 +23,6 @@ import com.example.haweatherapp.R
 
 @Composable
 fun SunCard(
-    airQualityIndex: Int = 390,
-    condition: String = "Partly Cloudy",
-    pm: Int = 800,
     modifier: Modifier = Modifier
 ) {
     Card(
@@ -71,8 +68,6 @@ fun SunCard(
     }
 }
 
-
-//@Preview(showBackground = true, device = Devices.PIXEL_TABLET)
 @Preview
 @Composable
 fun SunCardPreview() {
